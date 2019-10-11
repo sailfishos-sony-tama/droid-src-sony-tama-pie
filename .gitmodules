@@ -1,3 +1,6 @@
 [submodule "dhs"]
 	path = dhs
 	url = https://github.com/mer-hybris/droid-hal-source/
+[submodule "repo_update"]
+	path = repo_update
+	url = https://github.com/sonyxperiadev/repo_update.git
