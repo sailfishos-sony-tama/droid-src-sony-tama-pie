@@ -1,0 +1,40 @@
+From 42b3b028f6a94bcbe15efeec39d3fb133b5bcc5d Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Bj=C3=B6rn=20Bidar?= <theodorstormgrade@gmail.com>
+Date: Sun, 18 Oct 2020 21:13:35 +0300
+Subject: [PATCH 1/4] Revert "hal: Correct mixer control name for 3.5mm
+ headphone"
+
+This reverts commit 39a2b8a03c0a8a44940ac732f636d9cc1959eff2.
+---
+ hal/msm8974/platform.c | 15 ++++-----------
+ 1 file changed, 4 insertions(+), 11 deletions(-)
+
+diff --git a/hal/msm8974/platform.c b/hal/msm8974/platform.c
+index 5a36f0c..0e578ae 100644
+--- a/hal/msm8974/platform.c
++++ b/hal/msm8974/platform.c
+@@ -1459,17 +1459,10 @@ platform_backend_config_init(struct platform_data *pdata)
+     pdata->current_backend_cfg[USB_AUDIO_TX_BACKEND].channels_mixer_ctl =
+             strdup("USB_AUDIO_TX Channels");
+ 
+-    if (strstr(pdata->snd_card_name, "intcodec")) {
+-        pdata->current_backend_cfg[HEADPHONE_BACKEND].bitwidth_mixer_ctl =
+-                strdup("INT0_MI2S_RX Format");
+-        pdata->current_backend_cfg[HEADPHONE_BACKEND].samplerate_mixer_ctl =
+-                strdup("INT0_MI2S_RX SampleRate");
+-    } else {
+-        pdata->current_backend_cfg[HEADPHONE_BACKEND].bitwidth_mixer_ctl =
+-                strdup("SLIM_6_RX Format");
+-        pdata->current_backend_cfg[HEADPHONE_BACKEND].samplerate_mixer_ctl =
+-                strdup("SLIM_6_RX SampleRate");
+-    }
++    pdata->current_backend_cfg[HEADPHONE_BACKEND].bitwidth_mixer_ctl =
++            strdup("SLIM_6_RX Format");
++    pdata->current_backend_cfg[HEADPHONE_BACKEND].samplerate_mixer_ctl =
++            strdup("SLIM_6_RX SampleRate");
+ 
+     pdata->current_backend_cfg[USB_AUDIO_RX_BACKEND].bitwidth_mixer_ctl =
+             strdup("USB_AUDIO_RX Format");
+-- 
+2.28.0
+
